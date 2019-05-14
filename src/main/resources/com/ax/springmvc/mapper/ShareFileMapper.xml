@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "mybatis-3-mapper.dtd" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.ax.springmvc.mapper.ShareFileMapper">
+	<cache />
+	<insert id="addShareFiles">
+		insert into sharefile values
+		<foreach item="s" index="i" collection="shareFiles"
+			separator=",">
+			(0,#{s.folioType},#{s.fileId},#{s.fileShareId})
+		</foreach>
+	</insert>
+
+	<select id="queryByFileShareId" resultType="ShareFile">
+		select * from sharefile where fileShareId in
+		<foreach item="item" index="i" collection="fileShareIds"
+			open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+</mapper>

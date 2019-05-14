@@ -1,0 +1,270 @@
+.cursor{cursor: pointer;}
+.breadcrumb {
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid #ccc;
+    border-radius: 0 0 4px 4px;
+    min-height: 38px;
+}
+
+/*jQuery*/
+.bHzsaPb {
+    background: #dde2e5;
+    color: #3b8cff;
+}
+
+.getBtn > span {
+    padding: 0 30px;
+    line-height: 32px;
+    height: 32px;
+    display: inline-block;
+}
+
+/*jQuery*/
+
+body {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+ul, dl, ol {
+    list-style: none;
+}
+
+#content {
+    height: 602px;
+}
+
+#content > nav, #content > div {
+    float: left;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#left {
+    background-color: #e9eef1;
+    width: 15%;
+    border-right: 1px solid #ccc;
+    box-sizing: border-box;
+    position: relative;
+}
+
+#left ~ div {
+    width: 85%;
+    padding: 5px 10px;
+}
+
+.nav-dl {
+    padding-top: 15px;
+    color: #111e3a;
+}
+
+.nav-dl > dt, .nav-dl > dd {
+    height: 36px;
+    line-height: 36px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.nav-dl > dt:hover, .nav-dl > dd:hover {
+    background: #dde2e5;
+}
+
+.nav-dl > dt {
+    font-size: 15px;
+    padding-left: 20px;
+}
+
+.nav-dl > dd {
+    font-size: 14px;
+    padding-left: 50px;
+}
+
+.myTabBox {
+    width: 100%;
+    /* height: 463px; */
+    overflow: auto;
+    font-size: 15px;
+    position: relative;
+    flex: 1;
+}
+
+.myTabBox .table {
+    font-size: 14px;
+    margin: 0;
+    width: 100%;
+}
+
+.myTabBox .table tr td {
+    border-top: 1px solid #b9d8ff;
+    border-bottom: 1px solid #daebfe;
+    padding: 8px;
+}
+
+.myTabBox .table tr:hover {
+    background-color: #f6faff;
+}
+
+.myTabBox .table tr:hover td {
+    border-bottom: 1px solid #daebfe;
+    border-top: 1px solid #daebfe;
+}
+
+.myTabBox .table input[type=checkbox] {
+    margin-right: 10px;
+}
+
+.myTabBox .table .headerTr~tr{
+	height: 42px;
+}
+.myTabBox .table tr td:first-of-type>.fa {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.myTabBox .table tr td:first-of-type>.fa.fa-folder {color: #ffd65a;}
+.myTabBox .table .headerTr~tr td:first-of-type>.fa-file-audio-o {color: #8284f1;}
+.myTabBox .table .headerTr~tr td:first-of-type>.fa-file-video-o {color: #8284f1;}
+.myTabBox .table .headerTr~tr td:first-of-type>.fa-file-image-o {color: #ff7844;}
+.myTabBox .table .headerTr~tr td:first-of-type>.fa-file {color: #64c424;}
+
+.myTabBox .table .FileName-div {
+    display: inline-block;
+}
+
+.myTabBox table tr:hover .file-option {
+    display: block;
+    position: relative;
+}
+
+input[name=fileMain] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+input[name=html5uploader] {
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: -80%;
+    width: 180%;
+    height: 100%;
+    cursor: pointer;
+}
+
+#myFile .navbar {
+    /*min-height: auto;*/
+}
+
+#myFile .collapse > ul {
+    font-size: 13px;
+}
+
+#myFile .collapse > ul > li {
+    margin: 8px 5px;
+}
+
+#myFile .collapse > ul > li > .btn {
+    padding: 0 16px;
+    font-size: 14px;
+    display: inline-block;
+    height: 32px;
+    line-height: 32px;
+    /* border-radius: 6px; */
+    background-color: #fff;
+    border-color: #3b8cff;
+    color: #3b8cff;
+    line-height: 32px;
+}
+
+#myFile .collapse > ul > li > .btn:hover {
+    color: #3b8cffba;
+}
+
+#myFile .navbar-nav > li > .btn > .glyphicon {
+    font-size: 18px;
+}
+
+#myFile .navbar-nav > li > .btn > .fa {
+    position: relative;
+    top: 3px;
+    font-size: 22px;
+}
+
+.file-option {
+    display: none;
+    float: right;
+    margin-right: 20px;
+    margin-top: 3px;
+}
+
+.file-option .fa {
+    font-size: 20px;
+    margin: 0 3px;
+    color: #3b8cffd4;
+    cursor: pointer;
+    padding: 0 4px;
+}
+
+.file-option .fa:hover {
+    color: #2f6efd;
+}
+
+.fileOption {
+    display: none;
+    position: absolute;
+    top: 80%;
+    right: -28px;
+    background-color: #fff;
+    border: 1px solid #3b8cff;
+    z-index: 10;
+    border-radius: 4px;
+}
+
+.fileOption > ul {
+    padding: 0;
+    margin: 0;
+    color: #3b8cff;
+    font-size: 14px;
+}
+
+.fileOption > ul > li {
+    padding: 3px 18px;
+    cursor: pointer;
+}
+
+.fileOption > ul > li:hover {
+    background-color: #3b8cff38;
+}
+
+#myFileHeader {
+    position: relative;
+}
+
+#myFileHeader > div{
+    margin: 9px 0;
+}
+#myFileHeader > div.last {
+    position: absolute;
+    top: 0;
+    right: 20px;
+}
+#myFileHeader>div.head{
+	display: none;
+	float: left;
+	padding: 0 10px;
+}
+#myFileHeader .head.bread-h.cursor{
+	color: rgb(51, 122, 183);
+    border-right: 1px solid;
+    margin-right: 8px;
+}
+
+.headerTr {
+    display: none;
+}

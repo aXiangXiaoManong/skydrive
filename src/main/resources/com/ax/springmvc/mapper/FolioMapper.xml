@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "mybatis-3-mapper.dtd" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.ax.springmvc.mapper.FolioMapper">
+	<cache />
+
+	<select id="selectByUser" resultType="Folio" useCache="false">
+		SELECT *,(SELECT COUNT(*) FROM folio WHERE
+		folio.`parentDir`=F.`id` AND
+		isNotDel=1) children FROM folio F WHERE
+		userId=#{userId} AND
+		isNotDel=#{isNotDel} AND
+		isNotShare=#{isNotShare}
+		<if test="parentDir &gt;= 0">
+			AND parentDir=#{parentDir}
+		</if>
+	</select>
+
+	<insert id="createFolio" keyProperty="id"
+		useGeneratedKeys="true">
+		INSERT INTO `skydrive`.`folio` VALUES(0,#{parentDir},#{folioName},NOW(),NOW(),1,#{userId},#{showName},#{isNotShare})
+	</insert>
+
+	<update id="updateFolios">
+		<foreach item="f" index="i" collection="folios">
+			UPDATE
+			`skydrive`.`folio` SET `parentDir` = #{f.parentDir},`folioName` =
+			#{f.folioName},`fileUpdateTime`=#{f.fileUpdateTime},`isNotDel`=#{f.isNotDel},`showName`=#{f.showName}
+			WHERE `id` = #{f.id};
+		</foreach>
+	</update>
+
+	<update id="updateFolisTodel">
+	UPDATE
+			`skydrive`.`folio` SET `isNotDel`=#{isNotDel},fileUpdateTime=now()
+			WHERE `id` IN
+		<foreach item="item" index="i" collection="ids" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</update>
+
+	<select id="selectByIds" resultType="Folio">
+		select * from folio where 1=1 and
+		<foreach item="item" index="i" collection="ids" open="("
+			separator=" or " close=")">
+			id = #{item}
+		</foreach>
+	</select>
+
+	<delete id="deleteFolios">
+		delete form folio where
+		<foreach item="item" index="i" collection="" separator=" or ">
+			id=#{item}
+		</foreach>
+	</delete>
+</mapper>

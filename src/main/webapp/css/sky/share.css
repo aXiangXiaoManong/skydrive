@@ -1,0 +1,374 @@
+.breadcrumb{/*鐠侯垰绶炵�佃壈鍩�*/
+    margin-bottom: 0;
+    padding: 12px 15px;
+    background-color: rgba(0,0,0,0);
+    border-bottom: 1px solid #ccc;
+    border-radius: 0;
+    height: 45px;
+}
+
+
+body{
+    width: 100%;
+    height: 100%;
+    background-size: 100% auto;
+    box-sizing: border-box;
+}
+ul,dl,ol{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+p{margin: 0;}
+body>.container{
+    height: 602px;
+    padding: 10px;
+}
+#left{
+    width: 25%;
+    margin-right: 1%;
+    border-radius: 4px;
+}
+#left>p:first-of-type>button{
+    width: 48%;
+    outline: none;
+    background-color: rgba(0,0,0,0);
+    margin-bottom: 3px;
+    height: 35px;
+}
+#left~div{
+    width: 74%;
+    border-radius: 4px;
+    overflow: hidden;
+}
+#left,#left~div{
+    float: left;
+    background: #fff;
+    height: 100%;
+    position: relative;
+}
+
+.userList{overflow: auto;height: 496px;}
+ul.userList{
+    display: none;
+}
+ol.userList>li>span{
+    float: right;
+    margin-top: 11px;
+}
+.userList>li{
+    padding: 8px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: -1px;
+    cursor: pointer;
+}
+.userList>li:hover{
+    background-color: #dee7f3;
+}
+.userList>li img{
+    width: 45px;
+    height: 45px;
+    margin-right: 8px;
+}
+
+#section{
+    padding: 100px;
+}
+#section>section>p.text{
+    width: 400px;
+    margin: 20px auto;
+}
+
+#section>section>p.text>span{
+    display: inline-block;
+    width: 100px;
+    font-size: 16px;
+    text-align-last: justify;
+}
+#section>section>p{
+    margin: 15px 0;
+    padding: 0 100px;
+    text-align: left;
+}
+
+#shareInit~div{
+    display: none;
+}
+
+.btn-bg-blue{background-color: #3b8cff;}
+.btn-ft-color{color: #3b8cff;border-color: #3b8cff;}
+input[name=html5uploader],input[name=uploadImg]{position: absolute;opacity: 0;top: -78%;left: 0;width: 100%;height: 178%;cursor: pointer;}
+
+#shareFiles{
+    display: none;
+    background: #4a484840;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+#shareFiles>div{
+    display: none;
+    width: 780px;
+    height: 455px;
+    box-sizing: border-box;
+    overflow: hidden;
+    background: #fff;
+    margin: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-radius: 5px;
+    box-shadow: 0 0 1px 1px #4a4747;
+}
+
+@media all and (min-height: 492px) {
+    #shareFiles>div{top: 0;bottom: 0;}
+}
+
+#shareFiles .fujian-txt{
+    height: 42px;
+    line-height: 42px;
+    text-indent: 2em;
+    color: #424e67;
+    font-size: 14px;
+    font-weight: 200;
+    background-color: #f2f6fd;
+}
+
+#shareFiles>div>section{
+    border-top: 1px solid #1350ff;
+    border-bottom: 1px solid #ccc;
+    height: 360px;
+    width: 100%;
+    box-sizing: border-box;
+    /*overflow: auto;*/
+}
+
+#shareFiles .table tr{
+    cursor: pointer;
+}
+#shareFiles .table:first-of-type tr th:hover{
+    background-color: #f1f1f1d9;
+}
+
+.table.myTable{
+    margin: auto;
+}
+.table.myTable .glyphicon-folder-open {
+    color: #ffd659;
+    font-size: 17px;
+    margin:0 5px;
+}
+#shareFiles>div>section>.table+div{
+    overflow: auto;
+    height: 274px;
+}
+
+#shareFiles>div>footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+#shareFiles>div>footer>p{
+    padding: 11px 8%;
+    box-sizing: border-box;
+}
+#shareFiles>div>footer>p>button{
+    padding: 5px 20px;
+}
+
+#fileSession{position: relative;}
+#fileSession>header>p{
+    font-size: 18px;
+    background-color: whitesmoke;
+    padding: 20px 0;
+}
+#fileSession>section{
+    box-sizing: border-box;
+    width: 100%;
+    height: 453px;
+    position: relative;
+    padding: 10px 20px;
+    overflow: auto;
+    /*border: 1px solid #a0a0ff;
+    border-left: 0;
+    border-right: 0;*/
+}
+#fileSession>footer{
+    padding: 15px 0;
+    box-sizing: border-box;
+    background-color: whitesmoke;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.popover{
+    position: relative;
+    z-index: 0;
+    top: 1%;
+    max-width: 300px;
+}
+.oneseif .popover{
+    background-color: #efefef4f;
+    color: black;
+}
+
+.search-result{
+    text-align: left;
+    padding: 10px 45px 0;
+}
+.search-result-area{
+    padding: 10px;
+    margin-top: 8px;
+    background: #f7f7f7;
+}
+.search-no-result{
+    color: #c00;
+    line-height: 20px;
+    font-size: 14px;
+}
+
+.search-avatar{
+    float: left;
+    margin-bottom: 10px;
+}
+.search-avatar img{
+    width: 45px;
+    height: 45px;
+}
+
+.no-nick-name{
+    margin-left: 8px;
+    height: 45px;
+    font-size: 14px;
+    color: #000;
+    line-height: 23px;
+    float: left;
+    margin-bottom: 10px;
+    width: 275px;
+}
+.search-btn-area{
+    text-align: center;
+    border-top: 1px solid #ebebeb;
+    padding-top: 10px;
+    clear: both;
+}
+.search-bd-account{
+    line-height: 45px;
+}
+.settingInfo>nav{
+    margin: 0 20px;
+}
+.settingInfo>nav>img{
+    width: 60px;
+    height: 60px;
+}
+.settingInfo>div>p{
+    height: 30px;
+    line-height: 30px;
+    text-align: left;
+}
+.settingInfo>div>p input{
+    height: 30px;
+}
+.settingInfo>div>p>.btn{
+    padding: 4px 12px;
+}
+.settingInfo>nav,.settingInfo>div{
+    float: left;
+    position: relative;
+     overflow: hidden;
+}
+@media (min-width: 768px){
+    #settingUp .modal-dialog {width: 372px;}
+    #deleteFriend .modal-dialog {width: 372px;}
+    #shareFilesModal .modal-dialog{width: 372px;}
+}
+/*jQuery*/
+.userList-li{background-color: #dee7f3;}
+.add-ft-color{border: 1px solid #675dfb;}
+
+
+/*回话信息区域*/
+.oneseif,.friend{margin: 8px 0}
+.oneseif .sessionContent{float: right;width: 100%}
+
+.oneseif .img-thumbnail{float: right;}
+.friend .img-thumbnail{float: left;}
+.oneseif a[title=保存到网盘]{display: none;}
+
+.friend .sessionContent .arrow{border-color: white #bfe779 white white;float: left;}
+.oneseif .sessionContent .arrow{border-color: white white white #f5f5f5;float: right;}
+.sessionContent .arrow{
+    width: 0;
+    height: 0;
+    font-size: 0;
+    border: solid 8px;
+    display: inline-block;
+    margin-top: 8px;
+}
+
+.friend .file{float: left;background: #bfe779;}
+.oneseif .file{float: right;display: inline-block;background: #f5f5f5;}
+.sessionContent .file{
+    position: relative;
+    /*width: 360px;*/
+    max-width: 60%;
+    min-width: 280px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    padding: 15px;
+    word-break: break-all;
+    word-wrap: break-word;
+    border-radius: 3px;
+}
+
+.fileName {
+    display: inline-block;
+    float: left;
+    margin-left: 10px;
+    word-break: break-all;
+    word-wrap: break-word;
+    max-width: 74%;
+}
+.fileName>span{font-size: 14px;}
+.fileName>.fileSize{font-size: 10px;color: #95A28E;display: inline-block;}
+
+.fileLog{width: 56px; height: 60px; font-size: 60px;line-height:60px;display: inline-block;float: left;}
+.fileToTime{width: 100%;margin: 0 auto;text-align: center;font-size:10px ;padding: 5px;}
+.fileToOption{height: 60px; line-height:60px;display: inline-block;float: right;font-size: 20px;position: relative;top: 30%;}
+.img-thumbnail.headImg{width: 50px;height: 50px;}
+.friend>div:first-of-type{width: 100%;}
+.friend .fa-folder,.oneseif .fa-folder{color: #ffd65a;}
+.friend .fa-file-audio-o,.oneseif .fa-file-audio-o{color: #8284f1;}
+.friend .fa-file-audio-o,.oneseif .fa-file-video-o{color: #8284f1;}
+.friend .fa-file-image-o,.oneseif .fa-file-image-o{color: #ff7844;}
+.friend .fa.fa-file,.oneseif .fa.fa-file{color: #64c424;}
+.friend .fa-th-large,.oneseif .fa-th-large{cursor:pointer;color: #43a0ff;background-color: #ffc644;padding: 2px 4px 0 6px;border-radius: 8px;font-size: 54px;}
+
+.friend:after,
+.oneseif:after,
+.fileToTime:after,
+.sessionContent:after,
+.sessionContent>div:after{
+    display: block;
+    clear: both;
+    content: '';
+}
+/*end 回话信息区域*/
+
+.selectedUser{text-align: left;height: 230px;width: 100%;overflow: auto;}
+.selectedUser>li{padding: 8px 12px;border: 1px solid #ccc;box-sizing: border-box;margin-bottom: -1px;cursor: pointer;font-size: 15px;position: relative;}
+.selectedUser>li:hover{background-color: #e4fde0bf;}
+.selectedUser>li>img{width: 40px;height: 40px;margin-right: 8px;}
+.selectedUser>li>i.fa{font-size: 25px;position: absolute;top: 16px;right: 20px;}
+.selectedUser>li>i.fa.fa-circle-o{color: #565252;}
+.selectedUser>li>i.fa.fa-dot-circle-o{color: #000;}

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	<!-- 读取xx.properties属性文件 -->
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath*:database.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 扫描带有元注解的包中的类，相等于声明了许多的Bean对象 -->
+	<context:component-scan
+		base-package="com.ax.springmvc" />
+
+	<!-- 启用事务的元注解 -->
+	<tx:annotation-driven />
+
+	<!-- 启用MVC源注解配置 -->
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<!-- 配置ajax时，String返回的格式 -->
+			<bean
+				class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/plain;charset=UTF-8</value>
+						<value>text/html;charset=UTF-8</value>
+						<value>application/json;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+			<!-- jackson的日期配置 -->
+			<bean
+				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="objectMapper">
+					<bean class="com.fasterxml.jackson.databind.ObjectMapper">
+						<property name="dateFormat">
+							<bean class="java.text.SimpleDateFormat">
+								<constructor-arg type="java.lang.String"
+									value="yyyy-MM-dd" />
+							</bean>
+						</property>
+					</bean>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+	<!-- 1. 配置数据源 -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>${driver}</value>
+		</property>
+		<property name="url">
+			<value>${url}</value>
+		</property>
+		<property name="username">
+			<value>${username}</value>
+		</property>
+		<property name="password">
+			<value>${password}</value>
+		</property>
+	</bean>
+
+	<!-- 2. 配置事务管理 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+	<!-- 视图解析 -->
+	<bean
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<!-- 返回的视图模型数据需要经过jstl来处理 -->
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<!-- 路径的前缀 -->
+		<property name="prefix" value="/WEB-INF/" />
+		<!-- 页面的后缀 -->
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<!-- 忽略静态资源:由tomcat按默认方式处理静态资源，不通过springmvc框架 -->
+	<mvc:default-servlet-handler />
+
+	<!-- 5. 配置mybitasSqlSessionFactoryBean -->
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- 配置别名路径 -->
+		<property name="typeAliasesPackage"
+			value="com.ax.springmvc.pojo,com.ax.springmvc.vo"></property>
+		<property name="configLocation"
+			value="classpath:mybatis-config.xml"></property>
+	</bean>
+	<!-- 6. 自动扫描所有的Dao[Mapper](和xml映射文件) ,自动创建所有的dao的实现类 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.ax.springmvc.mapper"></property>
+	</bean>
+
+	<!-- 多部分文件上传 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="104857600" />
+		<property name="maxInMemorySize" value="4096" />
+		<property name="defaultEncoding" value="UTF-8"></property>
+	</bean>
+	
+	<!-- 拦截器的配置 -->
+	<mvc:interceptors>
+		<mvc:interceptor><!-- 配置局部拦截器，需要满足下列路径条件 -->
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/home/login" /><!-- 排除登录路径 -->
+			<mvc:exclude-mapping path="/login/login" />
+			<mvc:exclude-mapping path="/loginout" />
+			<mvc:exclude-mapping path="/css" />
+			<mvc:exclude-mapping path="/img" />
+			<mvc:exclude-mapping path="/login/checkPhone" />
+			<mvc:exclude-mapping path="/jsp/jstl/core" />
+			<bean class="com.ax.springmvc.interceptor.LoginInterceptor" /><!-- 自定义拦截器注册 -->
+		</mvc:interceptor>
+		
+		<!-- 我们可以直接在这里注册自定义拦截器Bean来配置全局拦截器，会对所有请求拦截 -->
+		<!-- <bean class="com.accp.springmvc.interceptor.FirstInterceptor" /> 自定义拦截器注册 -->
+	</mvc:interceptors>
+</beans>

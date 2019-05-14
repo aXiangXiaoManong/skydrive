@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "mybatis-3-mapper.dtd" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.ax.springmvc.mapper.FileShareMapper">
+	<cache />
+	<insert id="addShareFile" keyProperty="fileShare.id"
+		useGeneratedKeys="true">
+		INSERT INTO `skydrive`.`fileshare`
+		VALUES(0,#{fileShare.userId},#{fileShare.isNotEffective},NOW(),DATE_ADD(NOW(),INTERVAL
+		#{shareDay}
+		DAY),#{fileShare.downloadNum})
+	</insert>
+
+	<select id="queryByToUserId" resultMap="fileShareMap">
+		SELECT * FROM FileShare
+		F,shareuser S WHERE fileShareId = F.id AND F.userId=#{userId}
+	</select>
+
+	<select id="queryByBeUserId" resultMap="fileShareMap">
+		SELECT * FROM FileShare
+		F,shareuser S WHERE S.fileShareId = F.id AND S.beuserId=#{userId}
+	</select>
+
+	<resultMap type="FileShare" id="fileShareMap">
+		<id property="id" column="id" />
+		<result property="userId" column="userId" />
+		<result property="isNotEffective" column="isNotEffective" />
+		<result property="sharingTime" column="sharingTime" />
+		<result property="outTime" column="outTime" />
+		<result property="downloadNum" column="downloadNum" />
+		<association property="shareUser" javaType="ShareUser">
+			<id property="id" column="id" />
+			<result property="beUserId" column="beUserId" />
+			<result property="fileShareId" column="fileShareId" />
+		</association>
+	</resultMap>
+</mapper>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "mybatis-3-mapper.dtd" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.ax.springmvc.mapper.ShareUserMapper">
+	<cache />
+
+	<insert id="addShareUsers">
+		insert into shareUser values
+		<foreach item="s" index="i" collection="shareUsers"
+			separator=",">
+			(0,#{s.beUserId},#{s.fileShareId})
+		</foreach>
+	</insert>
+
+	<select id="queryByFileShareId" resultType="ShareUser">
+		select * from shareUser where fileShareId in
+		<if test="fileSharIds==null || fileSharIds.size()==0">(0)</if>
+		<foreach item="item" index="i" collection="fileSharIds"
+			open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+	
+	<select id="queryByBeUserId" resultType="ShareUser">
+		select * from shareUser where beUserId in
+		<if test="fileSharIds==null || fileSharIds.size()==0">(0)</if>
+		<foreach item="item" index="i" collection="beuserIds"
+			open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+</mapper>

@@ -1,0 +1,132 @@
+.navbar {border-radius: 0;min-height: 60px;margin-bottom: 0;}
+.navbar-header .navbar-brand{color: #fff;font-size: 20px;}
+.navbar-header .navbar-brand>span{font-size: 30px;float: left;}
+.navbar-header .navbar-brand>b{font-weight: 500;float: left;line-height: 30px;margin-left: 8px;}
+.collapse>ul:first-of-type > li > a {
+    font-size: 16px;
+    cursor: pointer;
+}
+@media (min-width: 768px){
+    .navbar-nav > li > a {
+        padding:19px 28px;
+    }
+}
+#nav-btn-vip{
+    border-radius:20px;background-color: #f1f51f;padding: 4px 12px;margin: 15px 10px 0 0;
+}
+
+/* Мгдижа */
+#spinner{width: 100%;height: 100%;box-sizing: border-box;text-align: center;position: fixed;
+    top: 0;left: 0;background: #eaeaea14;padding-top: 20%;z-index: 1200;display: none;font-size: 18px;}
+.fa-spinner {font-size: 50px;animation: spread 1.4s linear infinite;position: relative;top: 10px;left: -5px}
+@keyframes spread {100%{transform: rotate(360deg);}}
+
+.errmsg{background: #ef9b1ede;z-index: 1101;position: absolute;width: 305px;height: 26px;
+top: 0;left: 0;right: 0;bottom: 483px;margin: auto;white-space: nowrap;color: #fff;min-height: 20px;
+line-height: 26px;border-radius: 3px;font-size: 15px;text-align: center;}
+.cormsg{background: #30fb17e8;z-index: 1101;position: absolute;width: 305px;height: 26px;
+top: 0;left: 0;right: 0;bottom: 483px;margin: auto;white-space: nowrap;color: #fff;min-height: 20px;
+line-height: 26px;border-radius: 3px;font-size: 15px;text-align: center;}
+
+
+
+.spanOption {
+    font-weight: 600;
+    color: #3b8cff;
+    width: 23px;
+    height: 23px;
+    line-height: 23px;
+    display: inline-block;
+    font-family: verdana;
+    box-shadow: 0 0 1px 1px;
+    margin: 0 3px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+/*createFolioNode  begin*/
+
+#folioModalBody{border: 1px solid #ccc;width: 100%;overflow: hidden;}
+#folioModalBody>div{overflow: auto;max-height: 204px;width: 104%;}
+#folioModal .modal-footer>.btn:last-of-type{padding-left:  30px;padding-right: 30px;}
+#folioModal .modal-footer>.btn.btn-primary{
+    padding:0;
+    height:34px;
+    width: 90px;
+    text-align: center;
+    line-height: 34px;
+    background-color: #3b8cff;
+    border: 1px solid #3b8cff;
+}
+#folioModal .modal-footer>.btn.btn-primary>span{
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+}
+#folioModal .modal-footer>#creatFolio{
+    padding-left: 10px;
+    padding-right: 10px;
+    float: left;
+    color: #3b8cff;
+    border: 1px solid #3b8cff;
+}
+#folioModalBody i.fa{
+    font-size: 15px;
+    width: 18px;
+    text-align: center;
+    height: 18px;
+    line-height: 18px;
+    box-sizing: border-box;
+    font-weight: 600;
+    color: #090909;
+}
+#folioModalBody i.fa-spinner{
+    top: 0;
+    left: 0;
+}
+#folioModalBody div.p{
+    height: 34px;
+    line-height: 34px;
+    cursor: pointer;
+    margin: 0;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(0, 0, 0, 0);
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
+}
+
+#folioModalBody div.notp{
+	height: 34px;
+    line-height: 34px;
+    margin: 0;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(0, 0, 0, 0);
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
+    cursor: no-drop;
+    background: #e6e6e6c7;
+}	
+
+#folioModalBody div.p:hover{
+    border-top: 1px solid #c7d8ec;
+    border-bottom: 1px solid #c7d8ec;
+    background: #f2f8ffd9;
+}
+#folioModalBody div.p.active-p:hover{
+    border-top: 1px solid #9acdfd;
+    border-bottom: 1px solid #9acdfd;
+    background: #e5f0fb;
+}
+.active-p{
+    border-top: 1px solid #9acdfd;
+    border-bottom: 1px solid #9acdfd;
+    background: #e5f0fb;
+}
+#folioModalBody .fa.fa-folder,#folioModal .fa.fa-folder-open{
+    color: #ffd65a;
+    font-size: 18px;
+}
+#folioModalBody div.childrenDiv [name=fileName]{
+    height: 26px;
+}
+#folioModalBody div.p>i:nth-of-type(2){
+    margin-right: 5px;
+}
+/*createFolioNode  end*/

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "mybatis-3-mapper.dtd" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.ax.springmvc.mapper.UserMapper">
+	<cache />
+
+	<insert id="register" useGeneratedKeys="true" keyProperty="id">
+		insert into user values(0,#{nickname},#{headImg},#{phone},#{pwd})
+	</insert>
+	
+	<select id="queryByUserIds" resultType="User">
+		select * from user where id in
+		<if test="userIds==null || userIds.size()==0">(0)</if>
+		<foreach item="item" collection="userIds" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+</mapper>

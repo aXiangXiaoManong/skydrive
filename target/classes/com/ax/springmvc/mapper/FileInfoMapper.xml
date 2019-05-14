@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "mybatis-3-mapper.dtd" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.ax.springmvc.mapper.FileInfoMapper">
+	<cache />
+
+	<select id="selectByUserId" resultType="FileInfo"
+		useCache="false">
+		select * from fileinfo where userId=#{userId} AND isNotDel=#{isNotDel}
+		AND isNotShare = #{isNotShare}
+		<if test="parentDir &gt;= 0">
+			AND parentDir=#{parentDir}
+		</if>
+	</select>
+
+	<select id="selectByType" resultType="FileInfo">
+		select * from fileinfo where userId=#{userId} and isNotDel=1 AND
+		isNotShare = 1 and
+		fileType
+		<choose>
+			<when test="fileTypes == null || fileTypes.length &lt;=1">
+				not in
+				('jpg','bmp','png','gif','tiff','raw','jpeg','txt','text','docx','doc','ppt','pptx','mp4','mpg','avi','rm','mov','asf','wmv','flv','3gp','awv','f4v','mp3','wma','wav','ra','aac','mid','ogg','m4a')
+			</when>
+			<otherwise>
+				in
+				<foreach item="item" index="index" collection="fileTypes"
+					open="(" separator="," close=")">
+					#{item}
+				</foreach>
+			</otherwise>
+		</choose>
+	</select>
+
+	<insert id="newFile" useGeneratedKeys="true" keyProperty="id">
+		insert
+		into fileInfo
+		values(0,#{userId},#{fileName},#{fileSrc},#{parentDir},#{fileType},#{size},1,now(),now(),#{showName},#{isNotShare})
+	</insert>
+
+	<insert id="fileUpLoad">
+		insert into fileInfo values
+		<foreach item="f" index="i" collection="fileInfos"
+			separator=",">
+			(0,#{f.userId},#{f.fileName},#{f.fileSrc},#{f.parentDir},#{f.fileType},#{f.size},1,now(),now(),#{f.showName},#{f.isNotShare})
+		</foreach>
+	</insert>
+
+	<update id="updateFileInfos">
+		<foreach item="f" index="i" collection="fileInfos">
+			UPDATE
+			`skydrive`.`fileinfo` SET `fileName` = #{f.fileName},`fileSrc` =
+			#{f.fileSrc},`parentDir` = #{f.parentDir},`fileType` =
+			#{f.fileType},`isNotDel`=#{f.isNotDel},`fileUpdateTime` =
+			NOW(),showName=#{showName} WHERE
+			`id` = #{f.id};
+		</foreach>
+	</update>
+
+	<update id="updateFileTodel">
+		UPDATE `skydrive`.`fileinfo` SET
+		`isNotDel`=#{isNotDel},`fileUpdateTime` = NOW() WHERE `id` IN
+		<foreach item="item" index="i" collection="ids" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</update>
+
+	<select id="selectByIds" resultType="FileInfo">
+		select * from fileInfo where
+		<foreach item="item" index="i" collection="ids"
+			separator=" or ">
+			id = #{item}
+		</foreach>
+	</select>
+
+	<delete id="deleteFiles">
+		delete from fileInfo where
+		<foreach item="item" index="i" collection="ids"
+			separator=" or ">
+			id=#{item}
+		</foreach>
+	</delete>
+</mapper>
